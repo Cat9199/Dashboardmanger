@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Login Page</title>
+    <style>
+        body {
+            font-family: "Courier New", monospace;
+            background-color: #000;
+            color: #fff;
+            padding: 20px;
+        }
+        
+        h1 {
+            font-size: 24px;
+            text-align: center;
+            margin-top: 50px;
+        }
+        
+        form {
+            width: 50%;
+            margin: 0 auto;
+            background-color: #111;
+            padding: 20px;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+            font-size: 12px;
+        }
+        
+        input[type="text"],
+        input[type="password"] {
+            width: 98%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: none;
+            border-radius: 0;
+            background-color: #222;
+            color: #fff;
+            font-size: 12px;
+        }
+        
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 0;
+            cursor: pointer;
+            font-size: 12px;
+        }
+        
+        input[type="submit"]:hover {
+            background-color: #555;
+            font: 12px;
+            font-family: "Courier New", monospace;
+        }
+        
+        .error {
+            background-color: #600;
+            color: #fff;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        
+        .error-message {
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Login Page</h1>
+
+    <form method="POST" action="/login">
+        {% if error %}
+        <div class="error">
+            <p class="error-message">username or password doesn't exist.☠️☢️</p>
+        </div>
+        {% endif %}
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" placeholder="I Dont know 😅" required><br><br>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" placeholder="This is top secret🔐🤫" required><br><br>
+
+        <input type="submit" value="Login">
+    </form>
+</body>
+
+</html>

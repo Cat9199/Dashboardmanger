@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Login Page</title>
+    <style>
+        body {
+            font-family: "Courier New", monospace;
+            background-color: #000;
+            color: #fff;
+            padding: 20px;
+        }
+        
+        h1 {
+            font-size: 24px;
+            text-align: center;
+            margin-top: 50px;
+        }
+        
+        form {
+            width: 50%;
+            margin: 0 auto;
+            background-color: #111;
+            padding: 20px;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+            font-size: 12px;
+        }
+        
+        input[type="text"],
+        input[type="password"] {
+            width: 98%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: none;
+            border-radius: 0;
+            background-color: #222;
+            color: #fff;
+            font-size: 12px;
+        }
+        
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 0;
+            cursor: pointer;
+            font-size: 12px;
+        }
+        
+        input[type="submit"]:hover {
+            background-color: #555;
+            font: 12px;
+            font-family: "Courier New", monospace;
+        }
+        
+        .error {
+            background-color: rgb(0, 102, 42);
+            color: #fff;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        
+        .error-message {
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    {% if ftype =='add' %}
+    <h1>Add dashboard</h1>
+    <form method="POST" action="/add_dashboard">
+        {% if success %}
+        <div class="error">
+            <p class="error-message">The dashboard "{{name}}" has been added successfully! 👌</p>
+        </div>
+        {% endif %}
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="name" placeholder="the name of the dashboard 🙃" required><br><br>
+
+        <label for="password">Password:</label>
+        <input type="text" id="password" name="link" placeholder="Link of dashboard🤫" required><br><br>
+
+        <input type="submit" value="Login">
+    </form>
+    {% elif ftype == 'edit' %}
+    <h1>Edit the {{dashboard.name}} dashboard</h1>
+    <form method="POST" action="/update/{{dashboard.id}}">
+        {% if success %}
+        <div class="error">
+            <p class="error-message">The dashboard "{{name}}" has been Edit successfully! 👌</p>
+        </div>
+        {% endif %}
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="name" value="{{dashboard.name}}" placeholder="the name of the dashboard 🙃" required><br><br>
+
+        <label for="password">Password:</label>
+        <input type="text" id="password" name="link" value="{{dashboard.link}}" placeholder="Link of dashboard🤫" required><br><br>
+
+        <input type="submit" value="Login">
+    </form>
+    {% endif %}
+</body>
+
+</html>

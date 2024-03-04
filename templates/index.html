@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Welcome Page</title>
+    <style>
+        body {
+            font-family: "Courier New", monospace;
+            background-color: #000;
+            color: #fff;
+            padding: 20px;
+            font-size: 10px;
+        }
+        
+        h1 {
+            font-size: 2rem;
+            text-align: center;
+            margin-top: 50px;
+        }
+        
+        .typingEffect {
+            display: inline-block;
+            border-right: .15em solid orange;
+            white-space: nowrap;
+            margin: 0 auto;
+            color: green;
+            animation: typing 3.5s steps(30, end), blink-caret .5s step-end infinite;
+        }
+        
+        .userImg {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            margin: 20px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .userImg img {
+            max-height: 70px;
+            border-radius: 50%;
+            transition: transform 0.3s ease-in-out;
+        }
+        
+        .userImg:hover img {
+            transform: scale(1.2);
+        }
+        
+        .userInfoBox {
+            background-color: #333;
+            padding: 10px;
+            border-radius: 8px;
+            margin-left: 10px;
+            width: 120px;
+        }
+        
+        .userinfo {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+        
+        .user {
+            text-align: center;
+        }
+        
+        .user p {
+            margin: 5px;
+            font-size: 0.8rem;
+        }
+        
+        .user a {
+            display: inline-block;
+            margin-top: 10px;
+            color: #fff;
+            text-decoration: none;
+            background-color: #4285f4;
+            padding: 12px;
+            border-radius: 4px;
+            width: 100px;
+            text-align: center;
+            transition: background-color 0.3s ease;
+        }
+        
+        .user a:hover {
+            background-color: #34a853;
+        }
+        
+        .date {
+            text-align: center;
+            font-size: 1.5rem;
+            margin-top: 20px;
+        }
+        
+        .cardContener {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        
+        .card {
+            background-color: #111;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+            margin-bottom: 20px;
+            transition: transform 0.3s ease-in-out;
+            width: 200px;
+        }
+        
+        .card:hover {
+            transform: scale(1.05);
+        }
+        
+        .card label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+            font-size: 1rem;
+            color: #fff;
+        }
+        
+        .golink {
+            display: inline-block;
+            width: 95%;
+            padding: 10px;
+            background-color: #333;
+            padding: 10px;
+            border-radius: 4px;
+            color: #fff;
+            text-decoration: none;
+            text-align: center;
+        }
+        
+        @keyframes blink-caret {
+            from,
+            to {
+                border-color: transparent;
+            }
+            50% {
+                border-color: orange;
+            }
+        }
+        
+        @media screen and (max-width: 600px) {
+            .userImg {
+                position: relative;
+                margin: 20px auto;
+            }
+            .userImg img {
+                margin-bottom: 10px;
+            }
+            .userInfoBox {
+                margin-left: 0;
+                margin-top: 10px;
+            }
+        }
+        
+        @media screen and (max-width: 400px) {
+            .card {
+                width: 100%;
+            }
+        }
+        
+        .logoutbutton {
+            display: inline-block;
+            margin-top: 10px;
+            color: #fff;
+            text-decoration: none;
+            background-color: #4285f4;
+            padding: 12px;
+            border-radius: 4px;
+            width: 100px;
+            text-align: center;
+            transition: background-color 0.3s ease;
+        }
+        
+        .editButon {
+            display: inline-block;
+            margin-top: -5px;
+            color: #fff;
+            text-decoration: none;
+            background-color: #fff021;
+            padding: 8px;
+            border-radius: 4px;
+            width: 10px;
+            text-align: center;
+            transition: background-color 0.3s ease;
+            /*make it in the right side of the card*/
+            float: right;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="userImg">
+        <img src="https://i.redd.it/img8odfcyzi71.jpg" alt="userImg">
+        <div class="userInfoBox">
+            <p>Username: {{username}}</p>
+            <p>Email: {{email}}</p>
+            <a href="/logout" class="logoutbutton">Logout</a>
+        </div>
+    </div>
+    <h1>👋Welcome
+        <p class="typingEffect" id="typingEffect"></p>
+    </h1>
+
+    <div class="date">
+        <p id="dateToday">Today is: {{dateToday}}</p>
+    </div>
+
+    <div class="cardContener">
+        {% for dash in Dashboard %}
+        <div class="card">
+            <em>{{dash.id}}</em>
+            <!-- edit icon and link -->
+            <a href="/edit/{{dash.id}}" class="editButon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#000000" class="bi bi-pencil" viewBox="0 0 16 16">
+                <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325"/>
+              </svg></a>
+            <label>{{dash.name }}</label>
+            <a href="{{ dash.link }}" class="golink">Click Me</a>
+        </div>
+        {%endfor%}
+    </div>
+
+    <script>
+        //typingEffect code
+        var i = 0;
+        var txt = '{{username}}';
+        var speed = 50;
+
+        function typeWriter() {
+            if (i < txt.length) {
+                document.getElementById("typingEffect").innerHTML += txt.charAt(i);
+                i++;
+                setTimeout(typeWriter, speed);
+            }
+        }
+        //make it work every 10 seconds
+        typeWriter();
+        setInterval(typeWriter, 10000);
+    </script>
+</body>
+
+</html>
